@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .select-box{
+        width: 200px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .select-input{
+        width: 100%;
+        border: 1px solid #000000;
+        border-radius: 10px;
+    }
+    .select-input input{
+        border: none;
+        outline: none;
+        width: 100%;height: 100%;
+        padding: 0;
+        margin: 0;
+        font-size: 10px;
+    }
+    .select-list {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .select-list li{
+        width: 100%;
+        height: 25px;
+        border: 1px solid #000000;
+    }
+
+</style>
+<body>
+    <div id="root">
+        <div class="select-box">
+            <div class="select-input">
+                <input type="text" @focus="focus" v-model="title">
+            </div>
+            <ul class="select-list" v-show="this.status==true">
+                <li v-for="item in datas" @click="click(item.title)">{{item.title}}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    let app=new Vue({
+        el:'#root',
+        data:{
+            datas:[
+                {id:1,title:111},
+                {id:2,title:222},
+                {id:3,title:333},
+            ],
+            status:false,
+            title:'',
+        },
+        methods:{
+           focus(){
+               this.status=true;
+           },
+           click(val){
+               this.title=val;
+               this.status=false
+           }
+
+        }
+    })
+</script>
+</html>
